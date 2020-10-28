@@ -24,7 +24,7 @@ allure 可以参考 "https://docs.qameta.io/allure/"
 最好在每个测试函数下面加上对这个测试的描述，以便在结果中得知该项测试的内容
 比如：
 
-def test():
+def test():\n
   """ test login"""
   
 脚本的最后都是用fxtest.main()执行
