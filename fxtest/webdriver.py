@@ -237,7 +237,7 @@ class WebDriver(object):
         show_element(elem)
         return elem.is_displayed()
     
-    
+
 
     @property
     def get_title(self):

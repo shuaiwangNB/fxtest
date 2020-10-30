@@ -3,11 +3,16 @@ import ast
 from setuptools import setup, find_packages
 
 
+version_re=re.compile(r'(?<=__version__\s=\s).*')
+with open("fxtest/__init__.py","rb") as f:
+    base=str(f.read().decode('utf-8'))
+version=str(ast.literal_eval(version_re.search(base).group()))
+
 setup(
     name="fxtest",
     url="https://github.com/shuaiwangNB/fxtest",
     author="shuaiwang",
-    version="0.0.2",
+    version=version,
     install_requires=[
         "py",
         "ansi2html",
