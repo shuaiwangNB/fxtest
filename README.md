@@ -1,4 +1,7 @@
+## fxtest 安装方式
+pip install fxtest
 # fxtest
+
 
 fxtest -h 可以查看用法
 
