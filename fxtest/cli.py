@@ -47,6 +47,15 @@ allure 可以参考 "https://docs.qameta.io/allure/"
 5.最后 "allure -v" 确认安装成功
 """
 
+andriod_config="""
+platformName: "Android"
+platformVersion: "9"
+deviceName: "Android"
+appPackage: "com.fuxing.ai.water"
+appActivity: "com.fuxing.ai.water.view.activity.LoginActivity"
+remote: "http://localhost:4723/wd/hub"
+"""
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--version', help="show version",
@@ -137,6 +146,7 @@ def create_folder(project_name):
     create_folder(os.path.join(project_name, "libs"))
     create_file(os.path.join(project_name, "conftest.py"),conftest)
     create_file(os.path.join(project_name,"pytest.ini"),pytest_ini)
+    create_file(os.path.join(project_name,"resource","Android_Config.yaml"),andriod_config)
     create_file(os.path.join(project_name, "test_case",
                              "test_sample.py"), file_content=test_sample)
 

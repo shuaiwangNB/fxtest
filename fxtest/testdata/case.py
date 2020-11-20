@@ -7,7 +7,7 @@ from fxtest.webdriver import WebDriver
 
 class TestCase(WebDriver):
     
-    def assertElementisExist(self,xpath=None,msg=""):
+    def AssertElementisExist(self,xpath=None,msg=""):
         if xpath is None:
             raise AssertionError("元素未指定")
         elem=Fxtest.driver.find_elements(By.XPATH,xpath)
@@ -19,7 +19,7 @@ class TestCase(WebDriver):
                 raise AssertionError(msg)
 
     
-    def assertText(self,text=None,msg=""):
+    def AssertHtmlText(self,text=None,msg=""):
         if text is None:
             raise AssertionError ("断言信息为空")
         elem=Fxtest.driver.find_element_by_tag_name("html")
@@ -30,16 +30,26 @@ class TestCase(WebDriver):
                 sleep(1)
 
     
-    def assertElementText(self,text=None,xpath=None,msg=""):
+    def AssertElementText(self,text=None,xpath=None,msg=""):
         if xpath is None:
             raise AssertionError("元素未指定")
-        elem=Fxtest.driver.find_elements(By.XPATH,elem)
+        elem=Fxtest.driver.find_elements(By.XPATH,xpath)
         for _ in range (Fxtest.timeout):
             if len(elem) !=0:
                 assert text in elem[0].text,msg
             else:
                 raise AssertionError("元素未找到")
 
+    def AssertElementEqualText(self,text=None,xpath=None,msg=""):
+        if xpath is None:
+            raise AssertionError("元素未指定")
+        elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        for _ in range (Fxtest.timeout):
+            if len(elem) !=0:
+                assert text == elem[0].text,msg
+            else:
+                raise AssertionError("元素未找到")     
             
-                    
+        
+
         

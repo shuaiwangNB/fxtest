@@ -13,3 +13,6 @@ class BrowserConfig:
     report_path = None
     allure_path =None
     proxy = None
+
+class AndroidConfig:
+    pass

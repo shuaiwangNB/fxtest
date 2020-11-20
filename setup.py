@@ -22,6 +22,7 @@ setup(
         "openpyxl",
         "pyyaml",
         "selenium",
+        "Appium-Python-Client"
     ],
     packages=find_packages(),
     include_package_data=True,

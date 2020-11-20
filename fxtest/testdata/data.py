@@ -8,7 +8,7 @@ import time
 import pytest
 import inspect
 
-def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s"):
+def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s",debug=True,**kwargs):
 
     if browser is None:
         BrowserConfig.name="chrome"
@@ -23,7 +23,7 @@ def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s"):
     """
     
     """
-    Fxtest.driver=Browser(name=BrowserConfig.name,grid_url=BrowserConfig.grid_url)
+    Fxtest.driver=Browser(name=BrowserConfig.name,grid_url=BrowserConfig.grid_url,**kwargs)
     
     filename="report"
     allure_name="allure-results"
@@ -51,8 +51,9 @@ def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s"):
     for cmd in cmd_list:
         if "--fxtest-html" in cmd :
             cmd_list.remove(cmd)
-    cmd_list.append("--fxtest-html={}".format(BrowserConfig.report_path))
-    cmd_list.append("--alluredir={}".format(BrowserConfig.allure_path))
+    if debug ==False:
+        cmd_list.append("--fxtest-html={}".format(BrowserConfig.report_path))
+        cmd_list.append("--alluredir={}".format(BrowserConfig.allure_path))
     
     if path is None:
         stack_t = inspect.stack()
@@ -76,13 +77,13 @@ def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s"):
     Fxtest.driver.maximize_window()
 
     pytest.main(cmd_list)
-    
-    allure_generate ="allure generate {0} --clean -o {1}".format(BrowserConfig.allure_path,allure_report_path)
-    res=os.system(allure_generate)
-    if res == 0:
-        log.info("成功生成allure 报告")
-    else:
-        log.info("生成allure报告失败")
+    if debug ==False:
+        allure_generate ="allure generate {0} --clean -o {1}".format(BrowserConfig.allure_path,allure_report_path)
+        res=os.system(allure_generate)
+        if res == 0:
+            log.info("成功生成allure 报告")
+        else:
+            log.info("生成allure报告失败")
     
     """
     
