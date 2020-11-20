@@ -59,7 +59,7 @@ def Browser(name=None, driver_path=None, grid_url=None,**kwargs):
             return 0
         else:
             try :
-                with open(kwargs.get("config",default="resource/Android_Config.yaml"),"r",encoding="utf-8") as f:
+                with open(kwargs.get("config","resource/Android_Config.yaml"),"r",encoding="utf-8") as f:
                     config=yaml.safe_load(f)
             except FileNotFoundError as e:
                 log.error(e)

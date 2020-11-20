@@ -6,11 +6,18 @@ from fxtest.webdriver import WebDriver
 
 
 class TestCase(WebDriver):
+
+
     
-    def AssertElementisExist(self,xpath=None,msg=""):
-        if xpath is None:
+    def AssertElementisExist(self,xpath=None,id_=None,msg=""):
+        if xpath and id_ is None:
             raise AssertionError("元素未指定")
-        elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if id_ is None:
+            elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if xpath is None:
+            elem=Fxtest.driver.find_elements(By.ID,id_)
+        if xpath and id_ is not None:
+            raise AssertionError("请选择一种定位方式")
         for _ in range (Fxtest.timeout):
             
             if len(elem) != 0:
@@ -31,9 +38,14 @@ class TestCase(WebDriver):
 
     
     def AssertElementText(self,text=None,xpath=None,msg=""):
-        if xpath is None:
+        if xpath and id_ is None:
             raise AssertionError("元素未指定")
-        elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if id_ is None:
+            elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if xpath is None:
+            elem=Fxtest.driver.find_elements(By.ID,id_)
+        if xpath and id_ is not None:
+            raise AssertionError("请选择一种定位方式")
         for _ in range (Fxtest.timeout):
             if len(elem) !=0:
                 assert text in elem[0].text,msg
@@ -41,9 +53,14 @@ class TestCase(WebDriver):
                 raise AssertionError("元素未找到")
 
     def AssertElementEqualText(self,text=None,xpath=None,msg=""):
-        if xpath is None:
+        if xpath and id_ is None:
             raise AssertionError("元素未指定")
-        elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if id_ is None:
+            elem=Fxtest.driver.find_elements(By.XPATH,xpath)
+        if xpath is None:
+            elem=Fxtest.driver.find_elements(By.ID,id_)
+        if xpath and id_ is not None:
+            raise AssertionError("请选择一种定位方式")
         for _ in range (Fxtest.timeout):
             if len(elem) !=0:
                 assert text == elem[0].text,msg

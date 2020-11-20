@@ -104,14 +104,18 @@ def show_element(elem):
     style_red = 'arguments[0].style.border="2px solid #FF0000"'
     style_blue = 'arguments[0].style.border="2px solid #00FF00"'
     style_null = 'arguments[0].style.border=""'
-    for _ in range(2):
-        Fxtest.driver.execute_script(style_red, elem)
-        time.sleep(0.1)
+    try:
+        for _ in range(2):
+            Fxtest.driver.execute_script(style_red, elem)
+            time.sleep(0.1)
+            Fxtest.driver.execute_script(style_blue, elem)
+            time.sleep(0.1)
         Fxtest.driver.execute_script(style_blue, elem)
-        time.sleep(0.1)
-    Fxtest.driver.execute_script(style_blue, elem)
-    time.sleep(0.3)
-    Fxtest.driver.execute_script(style_null, elem)
+        time.sleep(0.3)
+        Fxtest.driver.execute_script(style_null, elem)
+    except Exception as e:
+        log.warn(e)
+        pass
 
 
 class WebDriver(object):

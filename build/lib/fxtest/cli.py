@@ -17,11 +17,17 @@ class Test(fxtest.TestCase):
 
     def test(self):
         self.get("http://192.168.2.55/web/#/login")
-        self.assertText(text="登录")
+        self.AssertHtmlText(text="登录")
 
 if __name__ == "__main__":
     fxtest.main()
 
+"""
+run_sample="""
+import fxtest
+
+if __name__ == "__main__":
+    fxtest.main()
 """
 
 pytest_ini="""
@@ -145,6 +151,7 @@ def create_folder(project_name):
     create_folder(os.path.join(project_name, "resource"))
     create_folder(os.path.join(project_name, "libs"))
     create_file(os.path.join(project_name, "conftest.py"),conftest)
+    create_file(os.path.join(project_name, "run.py"),run_sample)
     create_file(os.path.join(project_name,"pytest.ini"),pytest_ini)
     create_file(os.path.join(project_name,"resource","Android_Config.yaml"),andriod_config)
     create_file(os.path.join(project_name, "test_case",

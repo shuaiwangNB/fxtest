@@ -74,7 +74,11 @@ def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s",debug=True,**
             else:
                 test_path=path
     cmd_list.append(test_path)
-    Fxtest.driver.maximize_window()
+    try:
+        Fxtest.driver.maximize_window()
+    except Exception as e:
+        log.warn(e)
+        pass
 
     pytest.main(cmd_list)
     if debug ==False:

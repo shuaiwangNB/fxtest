@@ -3,4 +3,4 @@ from fxtest.webdriver import WebDriver
 from fxtest.testdata.case import TestCase
 
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
