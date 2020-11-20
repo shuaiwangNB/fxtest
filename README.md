@@ -35,6 +35,16 @@ fxtest main 包括了参数 浏览器类型，执行文件，和 cmd
 cmd 等于pytest  你想添加的参数
 
 
+
+fxtest.main 用法
+browser=None,path=None,timeout=10,htmlpath=None,cmds="-s"
+browser 默认为chrome
+path 是执行的测试文件
+timeout 是测试最大时间
+htmlpath 测试结果报告路径
+cmds 是 pytest 需要添加的命令行命令
+
+
 ## fxtest 定位元素
 
 fxtest 提供了8中定位方式，与Selenium保持一致。
