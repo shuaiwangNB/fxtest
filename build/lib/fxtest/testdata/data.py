@@ -29,19 +29,19 @@ def main(browser=None,path=None,timeout=10,htmlpath=None,cmds="-s",debug=True,**
     allure_name="allure-results"
     allure_report_path="allure-report"
     if filename not in os.listdir(os.getcwd()):
-        os.mkdir(os.path.join(os.getcwd(), "report"))
-    if filename not in os.listdir(os.getcwd()):
-        os.mkdir(os.path.join(os.getcwd(),allure_name))
+        os.mkdir(os.path.join(os.getcwd(), filename))
+    # if allure_name not in os.listdir(os.getcwd()):
+    #     os.mkdir(os.path.join(os.getcwd(),allure_name))
     allure_report=os.path.join(os.getcwd(),allure_name)
     BrowserConfig.allure_path=allure_report
 
     if htmlpath is None:
         now = time.strftime("%Y_%m_%d_%H_%M_%S")
-        report=os.path.join(os.getcwd(),"report",now+"_result.html")
+        report=os.path.join(os.getcwd(),filename,now+"_result.html")
         BrowserConfig.report_path=report
 
     else:
-        report=os.path.join(os.getcwd(),"report",report)
+        report=os.path.join(os.getcwd(),filename,report)
         BrowserConfig.report_path=report
     
     try:
